@@ -39,20 +39,20 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
                 .tickFormat(formatPercent)
                 .scale(xAxisScale),
             yAxisScale = d3.scale.linear()
-                .range([0, 100])
+                .range([0, 450])
                 .domain([0, 20]),
             yAxis = d3.svg.axis()
                 .orient('left')
-                .ticks(5)
+                .ticks(10)
                 .tickFormat(d3.format('02d'))
                 .scale(yAxisScale);
 
         data_svg.append('g')
-                  .attr('transform', 'translate(' + 100 + ',' + 400 + ')')
+                  .attr('transform', 'translate(' + 30 + ',' + 50 + ')')
                   .attr('class', 'y axis')
                   .call(yAxis)
         data_svg.append('g')
-                .attr('transform', 'translate(' + 100 + ',' + 500 + ')')
+                .attr('transform', 'translate(' + 30 + ',' + 500 + ')')
                   .attr('class', 'x axis')
                   .call(xAxis)
 
