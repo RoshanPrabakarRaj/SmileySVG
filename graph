@@ -29,21 +29,21 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
         .attr("width", 6000)
         .attr("height", 4000);
         var xAxisScale = d3.scale.linear()
-                .range([0, 1000])
-                .domain([0, 1]),
+                .range([0, 520])
+                .domain([2006, 2015]),
             //    .append('g')
-            formatPercent = d3.format(".0%"),
+          //  formatPercent = d3.format(".0%"),
             xAxis = d3.svg.axis()
                 .orient('bottom')
-                .ticks(20)
-                .tickFormat(formatPercent)
+                .ticks(10)
+          //      .tickFormat(formatPercent)
                 .scale(xAxisScale),
             yAxisScale = d3.scale.linear()
                 .range([0, 450])
-                .domain([0, 20]),
+                .domain([20, 0]),
             yAxis = d3.svg.axis()
                 .orient('left')
-                .ticks(10)
+                .ticks(20)
                 .tickFormat(d3.format('02d'))
                 .scale(yAxisScale);
 
@@ -60,23 +60,23 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
         .data(data)
         .enter()
         .append("g")
-        .filter(function(d) { return d.gender =="m"; });
+        .filter(function(d) { return d.gender =="w"; });
     var data_circles = data_g.append("circle")
         .attr("cx", function(d) {
-            return 50 + scale_year(d.year);
+            return 42 + scale_year(d.year);
         })
         .attr("cy", function(d) {
-            return 350 - scale(d.winner_ace);
+            return 490 - scale(d.winner_ace);
         })
-        .attr("r", 20)
+        .attr("r", 8)
         .attr("fill", "#ff0000");
     var data_text = data_g.append("text")
         .text(function(d){return d.winner;})
         .attr("x", function(d) {
-            return 50 + scale_year(d.year);
+            return 42 + scale_year(d.year);
         })
         .attr("y", function(d) {
-            return 350 - scale(d.winner_ace);
+            return 490 - scale(d.winner_ace);
         });
 
 
