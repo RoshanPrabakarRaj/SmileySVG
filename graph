@@ -1,6 +1,6 @@
 
 var data = [];
-
+var count=0;
 //define row information
 function row(d) {
   return {
@@ -20,7 +20,7 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
 
     var scale = d3.scale.linear()
                     .domain([0, 20])
-                    .range([0, 350]);
+                    .range([0, 800]);
     var scale_year = d3.scale.linear()
                     .domain([2006, 2016])
                     .range([0, 550]);
@@ -28,6 +28,7 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
     .append("svg")
         .attr("width", 6000)
         .attr("height", 4000);
+
         var xAxisScale = d3.scale.linear()
                 .range([0, 520])
                 .domain([2006, 2015]),
@@ -40,10 +41,10 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
                 .scale(xAxisScale),
             yAxisScale = d3.scale.linear()
                 .range([0, 450])
-                .domain([20, 0]),
+                .domain([10, 0]),
             yAxis = d3.svg.axis()
                 .orient('left')
-                .ticks(20)
+                .ticks(10)
                 .tickFormat(d3.format('02d'))
                 .scale(yAxisScale);
 
@@ -69,7 +70,36 @@ d3.csv("USOpenFinals_2016.csv", row, function(error, csv_data){
             return 490 - scale(d.winner_ace);
         })
         .attr("r", 8)
-        .attr("fill", "#ff0000");
+        .attr("fill", "red")
+        .on('click',function(d){
+            var status = d3.select(this).style("fill");
+
+            if(count==0){
+                d3.select(this).attr("fill", "green");
+
+                count=1;
+                //console.error(count);
+
+
+            }
+            else if(count==1){
+                console.error(count);
+              //console.error("ivan");
+                d3.select(this).attr("fill", "red");
+                count=0;
+                 // console.error(count);
+            }
+            else {
+           // console.error("avan");
+                d3.select(this).attr("fill", "red");
+            }
+
+
+
+
+
+        });
+
     var data_text = data_g.append("text")
         .text(function(d){return d.winner;})
         .attr("x", function(d) {
