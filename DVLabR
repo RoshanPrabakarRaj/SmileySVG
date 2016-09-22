@@ -1,0 +1,7 @@
+> library("ggplot2", lib.loc="~/R/win-library/3.3")
+> p<-ggplot(sample,aes(winner,error,colour=factor(victory),size=total,label=player))
+> myPalette<-c("#FF9900","#0099FF")
+> p+geom_point()+scale_color_manual(values=myPalette)+geom_text(hjust=-0.2,vjust=1)
+> p<-ggplot(transform(sample,panel=cut(year,seq(2004,2014,by=1),include.lowest=T)),aes(winner,error))
+> #p+geom_point(aes(shape=factor(victory),size=total))+geom_text(aes(colour=factor(year),label=player),hjust=1.2,vjust=-1)
+> p+geom_point(aes(shape=factor(victory),size=total))+geom_line(aes(color=factor(year)))+geom_text(aes(colour=factor(year),label=player),position=position_jitter(width=5,height=1.5))+facet_grid(~year)+theme(panel.background=element_rect(fill="white"))+facet_wrap(~panel,scales='free')
